@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "We Bro's Completed MePro",
+  "version": "1.0",
+  "description": "Solves MePro questions",
+  "icons": {
+    "16": "assets/icon16.png",
+    "24": "assets/icon24.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "*://*.pearson.com/*",
+    "https://mepro.pearson.com/*",
+    "https://content.mepro.pearson.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mepro.pearson.com/*",
+        "https://content.mepro.pearson.com/*"
+      ],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}
